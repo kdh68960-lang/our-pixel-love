@@ -9,25 +9,23 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div id="app">
-        <header>
-            <h1 class="pixel-font">LOVE DAY</h1>
-        </header>
-        <main>
-            <!-- 디데이 섹션 -->
-            <section id="dday-section">
-                <div id="dday-counter">D+0</div>
-                <p id="anniversary-date">0000.00.00</p>
-            </section>
-            
-            <!-- 캘린더 (오늘은 뼈대만) -->
-            <section id="calendar-section">
-                <div id="calendar-header">2026.05</div>
-                <div id="calendar-grid"></div>
-            </section>
-        </main>
-    </div>
-    <script src="app.js"></script>
-</body>
+<div id="app">
+    <section class="card dday-container">
+        <div class="pixel-heart">❤️</div>
+        <div id="dday-label">우리가 함께한 지</div>
+        <div id="dday-count">D+0</div>
+        <div id="start-date-display">2024.01.01</div>
+    </section>
+
+    <section class="card calendar-container">
+        <div class="cal-header">
+            <span id="cal-month">5월</span>
+            <span id="cal-year">2026</span>
+        </div>
+        <div class="weekdays">
+            <div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div>
+        </div>
+        <div id="calendar-days"></div>
+    </section>
+</div>
 </html>
