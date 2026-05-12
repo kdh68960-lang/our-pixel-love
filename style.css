@@ -110,3 +110,17 @@ body {
 /* 주말 색상 */
 .day:nth-child(7n+1) { color: #FF4D4D; } /* 일요일 */
 .day:nth-child(7n) { color: #4D7CFF; }   /* 토요일 */
+
+.nav-btn {
+    background: none;
+    border: none;
+    font-family: 'NeoDunggeunmo';
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--main-pink);
+    padding: 0 15px;
+}
+
+.nav-btn:active {
+    transform: scale(0.9); /* 눌렀을 때 쫀득한 느낌 */
+}
