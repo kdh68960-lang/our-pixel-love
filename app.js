@@ -15,39 +15,51 @@ function updateDDay() {
 }
 
 function renderCalendar() {
-    const now = new Date();
-    const viewYear = now.getFullYear();
-    const viewMonth = now.getMonth();
+    const viewYear = date.getFullYear();
+    const viewMonth = date.getMonth();
+    
+    const now = getKST();
+    const isThisMonth = (viewYear === now.getFullYear() && viewMonth === now.getMonth());
 
     document.getElementById('cal-month').innerText = `${viewMonth + 1}월`;
     document.getElementById('cal-year').innerText = viewYear;
 
-    // 지난 달 마지막 날, 이번 달 마지막 날 계산
-    const prevLast = new Date(viewYear, viewMonth, 0);
+    // 1. 이번 달 마지막 날짜 객체
     const thisLast = new Date(viewYear, viewMonth + 1, 0);
+    const TLDate = thisLast.getDate(); // 이번 달 마지막 일 (예: 31)
 
-    const PLDate = prevLast.getDate();
-    const PLDay = prevLast.getDay();
-    const TLDate = thisLast.getDate();
-    const TLDay = thisLast.getDay();
+    // 2. 지난 달 마지막 날짜 객체 (시작 요일을 찾기 위함)
+    const prevLast = new Date(viewYear, viewMonth, 0);
+    const PLDay = prevLast.getDay(); // 지난 달 마지막 요일
 
+    // 3. 날짜 배열 생성
     const prevDates = [];
     const thisDates = [...Array(TLDate + 1).keys()].slice(1);
     const nextDates = [];
 
-    // 달력 채우기 로직 (간략화)
+    // 지난 달 날짜 채우기 (일요일 시작 기준)
     if (PLDay !== 6) {
         for (let i = 0; i < PLDay + 1; i++) {
-            prevDates.unshift(' '); // 빈칸 처리
+            prevDates.push(''); // 빈칸으로 두거나 prevLast.getDate() - i 로 채울 수 있음
         }
     }
 
-    const displayDates = [...prevDates, ...thisDates];
+    // 다음 달 날짜 채우기 (달력을 항상 6줄로 유지하기 위함 - 선택사항)
+    // 7일 * 6주 = 42칸에서 현재까지 찬 칸수를 뺍니다.
+    const remainingBoxes = 42 - (prevDates.length + thisDates.length);
+    for (let i = 1; i <= remainingBoxes; i++) {
+        nextDates.push('');
+    }
+
+    const displayDates = [...prevDates, ...thisDates, ...nextDates];
     const daysContainer = document.getElementById('calendar-days');
     
-    daysContainer.innerHTML = displayDates.map(date => 
-        `<div class="day">${date}</div>`
-    ).join('');
+    daysContainer.innerHTML = displayDates.map((d, index) => {
+        const isToday = (isThisMonth && d === now.getDate()) ? 'today' : '';
+        // 빈칸일 경우 'empty' 클래스를 주어 디자인을 다르게 할 수 있음
+        const isEmpty = d === '' ? 'empty' : '';
+        return `<div class="day ${isToday} ${isEmpty}">${d}</div>`;
+    }).join('');
 }
 
 // 현재 달력을 보여주는 기준 날짜 변수 (전역)

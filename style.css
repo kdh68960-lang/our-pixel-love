@@ -124,3 +124,8 @@ body {
 .nav-btn:active {
     transform: scale(0.9); /* 눌렀을 때 쫀득한 느낌 */
 }
+
+.day.empty {
+    border: none;
+    cursor: default;
+}
