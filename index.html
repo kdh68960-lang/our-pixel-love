@@ -3,35 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Our Love</title>
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
 </head>
-<div id="app">
-    <section class="card dday-container">
-        <div class="pixel-heart">❤️</div>
-        <div id="dday-label">우리가 함께한 지</div>
-        <div id="dday-count">D+0</div>
-        <div id="start-date-display">2024.01.01</div>
+<body>
+    <div id="app">
+        <section class="card dday-container">
+            <div class="pixel-heart">❤️</div>
+            <div id="dday-label">우리가 함께한 지</div>
+            <div id="dday-count">D+0</div>
+            <div id="start-date-display">2024.01.01</div>
+        </section>
+
+    <section class="card today-info">
+        <div id="current-full-date">2026년 5월 13일 (수)</div>
     </section>
 
-    <section class="card calendar-container">
-        <div class="cal-header">
-            <span id="cal-month">5월</span>
-            <span id="cal-year">2026</span>
-        </div>
-        <div class="weekdays">
-            <div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div>
-        </div>
-        <div id="calendar-days"></div>
-    </section>
-</div>
-<section class="card calendar-container">
-    <div class="cal-header">
-        <button id="prev-btn" class="nav-btn">&lt;</button> <span id="cal-month">5월</span>
-        <span id="cal-year">2026</span>
-        <button id="next-btn" class="nav-btn">&gt;</button> </div>
-    </section>
+        <section class="card calendar-container">
+            <div class="cal-header">
+                <button id="prev-btn" class="nav-btn">&lt;</button>
+                <span id="cal-month">5월</span>
+                <span id="cal-year">2026</span>
+                <button id="next-btn" class="nav-btn">&gt;</button>
+            </div>
+            <div class="weekdays">
+                <div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div>
+            </div>
+            <div id="calendar-days"></div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
 </html>
