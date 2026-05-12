@@ -96,4 +96,16 @@ document.getElementById('next-btn').addEventListener('click', () => {
     renderCalendar();
 });
 
+// 달력의 날짜 클릭 이벤트 설정
+document.getElementById('calendar-days').addEventListener('click', (e) => {
+    if (e.target.classList.contains('day') && e.target.innerText !== '') {
+        const clickedDate = e.target.innerText;
+        const viewYear = date.getFullYear();
+        const viewMonth = date.getMonth() + 1;
+        
+        // 나중에 여기를 '데이트 기록 창'으로 바꿀 거예요!
+        alert(`${viewYear}년 ${viewMonth}월 ${clickedDate}일을 선택하셨습니다!`);
+    }
+});
+
 initApp();
