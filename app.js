@@ -85,4 +85,53 @@ document.getElementById('calendar-days').addEventListener('click', (e) => {
     }
 });
 
+// OurBox 리스트 관리 데이터
+let todos = JSON.parse(localStorage.getItem('ourday_todos')) || [];
+
+function renderTodos() {
+    const todoList = document.getElementById('todo-list');
+    todoList.innerHTML = todos.map((todo, index) => `
+        <li class="todo-item ${todo.completed ? 'completed' : ''}">
+            <div>
+                <input type="checkbox" ${todo.completed ? 'checked' : ''} onchange="toggleTodo(${index})">
+                <span>${todo.text}</span>
+            </div>
+            <span class="delete-btn" onclick="deleteTodo(${index})">[삭제]</span>
+        </li>
+    `).join('');
+    
+    // 데이터 저장
+    localStorage.setItem('ourday_todos', JSON.stringify(todos));
+}
+
+function addTodo() {
+    const input = document.getElementById('todo-input');
+    if (input.value.trim() === '') return;
+    
+    todos.push({ text: input.value, completed: false });
+    input.value = '';
+    renderTodos();
+}
+
+function toggleTodo(index) {
+    todos[index].completed = !todos[index].completed;
+    renderTodos();
+}
+
+function deleteTodo(index) {
+    if(confirm('이 추억을 삭제할까요?')) {
+        todos.splice(index, 1);
+        renderTodos();
+    }
+}
+
+// 이벤트 리스너 등록
+document.getElementById('add-btn').addEventListener('click', addTodo);
+document.getElementById('todo-input').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') addTodo();
+});
+
+// 초기 실행 시 리스트 불러오기
+renderTodos();
+
 initApp();

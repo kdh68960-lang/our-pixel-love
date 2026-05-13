@@ -138,3 +138,24 @@ body {
     padding: 15px;
     border-bottom: 2px solid var(--accent-color); /* 포인트 줄 */
 }
+.ourbox-container { margin-top: 20px; }
+.ourbox-header { font-size: 1.5rem; color: var(--main-pink); margin-bottom: 15px; }
+
+.input-group { display: flex; gap: 10px; margin-bottom: 20px; }
+#todo-input { 
+    flex: 1; border: 2px solid var(--accent-color); 
+    padding: 10px; font-family: 'NeoDunggeunmo'; 
+}
+#add-btn { 
+    background: var(--main-pink); color: white; border: none; 
+    padding: 0 15px; cursor: pointer; font-family: 'NeoDunggeunmo';
+}
+
+#todo-list { list-style: none; padding: 0; }
+.todo-item { 
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px; border-bottom: 1px dashed #ccc; font-size: 1rem;
+}
+.todo-item.completed { text-decoration: line-through; color: #aaa; }
+.todo-item input[type="checkbox"] { margin-right: 10px; accent-color: var(--main-pink); }
+.delete-btn { color: #ff4d4d; cursor: pointer; font-size: 0.8rem; }
